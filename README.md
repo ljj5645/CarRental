@@ -1,30 +1,28 @@
-![image](https://user-images.githubusercontent.com/487999/79708354-29074a80-82fa-11ea-80df-0db3962fb453.png)
+# CarRental - 자동차 렌탈 시스템
 
-# 예제 - 음식배달
-
-본 예제는 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성한 예제입니다.
-이는 클라우드 네이티브 애플리케이션의 개발에 요구되는 체크포인트들을 통과하기 위한 예시 답안을 포함합니다.
-- 체크포인트 : https://workflowy.com/s/assessment-check-po/T5YrzcMewfo4J6LW
+본 과제는 MSA/DDD/Event Storming/EDA 를 포괄하는 분석/설계/구현/운영 전단계를 커버하도록 구성하였습니다.  
+이는 클라우드 네이티브 애플리케이션의 개발에 요구되는 체크포인트들을 통과하기 위한 Project CarRental 수행 결과입니다.
 
 
 # Table of contents
 
-- [예제 - 음식배달](#---)
+- [CarRental - 자동차 렌탈 시스템](#CarRental---자동차-렌탈-시스템)
   - [서비스 시나리오](#서비스-시나리오)
   - [체크포인트](#체크포인트)
   - [분석/설계](#분석설계)
   - [구현:](#구현-)
-    - [DDD 의 적용](#ddd-의-적용)
+    - [DDD 의 적용](#DDD-의-적용)
     - [폴리글랏 퍼시스턴스](#폴리글랏-퍼시스턴스)
-    - [폴리글랏 프로그래밍](#폴리글랏-프로그래밍)
     - [동기식 호출 과 Fallback 처리](#동기식-호출-과-Fallback-처리)
     - [비동기식 호출 과 Eventual Consistency](#비동기식-호출-과-Eventual-Consistency)
   - [운영](#운영)
     - [CI/CD 설정](#cicd설정)
     - [동기식 호출 / 서킷 브레이킹 / 장애격리](#동기식-호출-서킷-브레이킹-장애격리)
-    - [오토스케일 아웃](#오토스케일-아웃)
-    - [무정지 재배포](#무정지-재배포)
-  - [신규 개발 조직의 추가](#신규-개발-조직의-추가)
+    - [오토스케일아웃 (HPA)](#오토스케일아웃_(HPA))
+    - [ConfigMap](#ConfigMap)
+    - [Zero-downtime deploy (Readiness Probe)](#Zero-downtime_deploy_(Readiness_Probe))
+    - [Self-healing (Liveness Probe)](#Self-healing_(Liveness_Probe))
+    - 
 
 # 서비스 시나리오
 
