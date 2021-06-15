@@ -72,7 +72,7 @@
   ![image](https://user-images.githubusercontent.com/487999/79684144-2a893200-826a-11ea-9a01-79927d3a0107.png)
 
 ## TO-BE 조직 (Vertically-Aligned)
-  <img width="600" alt="TO-BE" src="https://user-images.githubusercontent.com/80210609/122098396-c0f3bc00-ce4b-11eb-8ba8-a53d96d74b2e.PNG">
+  <img width="700" alt="TO-BE" src="https://user-images.githubusercontent.com/80210609/122098396-c0f3bc00-ce4b-11eb-8ba8-a53d96d74b2e.PNG">
 
 
 
