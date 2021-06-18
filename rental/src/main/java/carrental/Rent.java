@@ -17,19 +17,20 @@ public class Rent {
 
     @PostPersist
     public void onPostPersist(){
-        Rented rented = new Rented();
-        BeanUtils.copyProperties(this, rented);
-        rented.publishAfterCommit();
-
         //Following code causes dependency to external APIs
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
         carrental.external.Pay pay = new carrental.external.Pay();
         // mappings goes here
-        Application.applicationContext.getBean(carrental.external.PayService.class)
+        pay.setRentId(this.getId());
+        pay.setStatus("PAID");
+        pay.setCarId(this.getCarId());
+        RentalApplication.applicationContext.getBean(carrental.external.PayService.class)
             .pay(pay);
 
-
+        Rented rented = new Rented();
+        BeanUtils.copyProperties(this, rented);
+        rented.publishAfterCommit();
     }
 
     @PostUpdate
@@ -37,17 +38,14 @@ public class Rent {
         RepairApplied repairApplied = new RepairApplied();
         BeanUtils.copyProperties(this, repairApplied);
         repairApplied.publishAfterCommit();
-
-
     }
 
     @PreRemove
     public void onPreRemove(){
         RentCanceled rentCanceled = new RentCanceled();
         BeanUtils.copyProperties(this, rentCanceled);
+        this.setStatus("RENTAL CANCELED");
         rentCanceled.publishAfterCommit();
-
-
     }
 
 

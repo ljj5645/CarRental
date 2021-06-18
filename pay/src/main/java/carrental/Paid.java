@@ -4,6 +4,7 @@ public class Paid extends AbstractEvent {
 
     private Long id;
     private Long rentId;
+    private Long carId;
     private String status;
 
     public Long getId() {
@@ -12,6 +13,13 @@ public class Paid extends AbstractEvent {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public Long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
     public Long getRentId() {
         return rentId;

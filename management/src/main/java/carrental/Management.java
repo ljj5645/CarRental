@@ -15,6 +15,7 @@ public class Management {
     private Long carId;
     private String carName;
     private String status;
+    private Long rentId;
 
     @PostPersist
     public void onPostPersist(){
@@ -27,11 +28,12 @@ public class Management {
 
     @PostUpdate
     public void onPostUpdate(){
-        Repaired repaired = new Repaired();
-        BeanUtils.copyProperties(this, repaired);
-        repaired.publishAfterCommit();
 
-
+        if(this.getStatus().equals("REPAIRED")){
+            Repaired repaired = new Repaired();
+            BeanUtils.copyProperties(this, repaired);
+            repaired.publishAfterCommit();
+        }
     }
 
 
@@ -56,6 +58,14 @@ public class Management {
     public void setCarName(String carName) {
         this.carName = carName;
     }
+    public Long getRentId() {
+        return rentId;
+    }
+
+    public void setRentId(Long rentId) {
+        this.rentId = rentId;
+    }
+    
     public String getStatus() {
         return status;
     }

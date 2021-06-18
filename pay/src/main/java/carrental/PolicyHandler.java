@@ -19,8 +19,12 @@ public class PolicyHandler{
 
         System.out.println("\n\n##### listener CancelPay : " + rentCanceled.toJson() + "\n\n");
 
-        // Sample Logic //
-        Pay pay = new Pay();
+        Pay pay = payRepository.findByRentId(rentCanceled.getId());
+        pay.setStatus("CANCELED");
+
+        System.out.println("###### 결제 취소 확인 #######");
+        // System.out.println("\n\n##### listener UpdateStatus : " + pay.toJson() + "\n\n");
+
         payRepository.save(pay);
             
     }

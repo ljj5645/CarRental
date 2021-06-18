@@ -5,6 +5,7 @@ public class PayCanceled extends AbstractEvent {
     private Long id;
     private Long rentId;
     private String status;
+    private Long carId;
 
     public Long getId() {
         return id;
@@ -12,6 +13,13 @@ public class PayCanceled extends AbstractEvent {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public Long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
     public Long getRentId() {
         return rentId;

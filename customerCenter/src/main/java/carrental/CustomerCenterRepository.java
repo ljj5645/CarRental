@@ -8,9 +8,6 @@ import java.util.List;
 public interface CustomerCenterRepository extends CrudRepository<CustomerCenter, Long> {
 
     List<CustomerCenter> findByRentId(Long rentId);
-    List<CustomerCenter> findByRentId(Long rentId);
-    List<CustomerCenter> findByRentId(Long rentId);
-    List<CustomerCenter> findByRentId(Long rentId);
     List<CustomerCenter> findByCarId(Long carId);
 
 }

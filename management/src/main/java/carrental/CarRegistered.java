@@ -6,6 +6,7 @@ public class CarRegistered extends AbstractEvent {
     private Long carId;
     private String carName;
     private String status;
+    private Long rentId;
 
     public CarRegistered(){
         super();
@@ -24,6 +25,13 @@ public class CarRegistered extends AbstractEvent {
 
     public void setCarId(Long carId) {
         this.carId = carId;
+    }
+    public Long getRentId() {
+        return rentId;
+    }
+
+    public void setRentId(Long rentId) {
+        this.rentId = rentId;
     }
     public String getCarName() {
         return carName;

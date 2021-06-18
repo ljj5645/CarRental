@@ -18,12 +18,16 @@ public class PolicyHandler{
         if(!repairApplied.validate()) return;
 
         System.out.println("\n\n##### listener StartRepair : " + repairApplied.toJson() + "\n\n");
+        
+        Management management = managementRepository.findByRentId(repairApplied.getId());
+        management.setStatus("REPAIRED");
 
-        // Sample Logic //
-        Management management = new Management();
+        System.out.println("###### 수리 접수/처리 완료 확인 #######");
+
         managementRepository.save(management);
             
     }
+
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverPaid_UpdateStatus(@Payload Paid paid){
 
@@ -31,11 +35,16 @@ public class PolicyHandler{
 
         System.out.println("\n\n##### listener UpdateStatus : " + paid.toJson() + "\n\n");
 
-        // Sample Logic //
-        Management management = new Management();
+        Management management = managementRepository.findByCarId(paid.getCarId());
+        management.setStatus("RENTED");
+        management.setRentId(paid.getRentId());
+
+        System.out.println("###### 렌트 완료 확인 #######");
+
         managementRepository.save(management);
             
     }
+
     @StreamListener(KafkaProcessor.INPUT)
     public void wheneverPayCanceled_UpdateStatus(@Payload PayCanceled payCanceled){
 
@@ -43,10 +52,13 @@ public class PolicyHandler{
 
         System.out.println("\n\n##### listener UpdateStatus : " + payCanceled.toJson() + "\n\n");
 
-        // Sample Logic //
-        Management management = new Management();
+        Management management = managementRepository.findByRentId(payCanceled.getRentId());
+        management.setStatus("AVAILABLE");
+        management.setRentId((long)0);
+
+        System.out.println("###### 사용 가능 확인 #######");
+
         managementRepository.save(management);
-            
     }
 
 

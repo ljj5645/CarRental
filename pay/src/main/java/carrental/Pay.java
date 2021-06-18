@@ -13,6 +13,7 @@ public class Pay {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Long rentId;
+    private Long carId;
     private String status;
 
     @PostPersist
@@ -41,6 +42,14 @@ public class Pay {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public Long getCarId() {
+        return carId;
+    }
+
+    public void setCarId(Long carId) {
+        this.carId = carId;
+    }
     public Long getRentId() {
         return rentId;
     }
@@ -48,6 +57,7 @@ public class Pay {
     public void setRentId(Long rentId) {
         this.rentId = rentId;
     }
+    
     public String getStatus() {
         return status;
     }
