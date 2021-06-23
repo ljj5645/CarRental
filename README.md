@@ -144,7 +144,7 @@
 
 ### 비기능 요구사항에 대한 검증
 
-<img width="528" alt="비기능" src="https://user-images.githubusercontent.com/80210609/123131992-32a1ba80-d489-11eb-8d80-748a73737031.PNG">
+<img width="800" alt="비기능" src="https://user-images.githubusercontent.com/80210609/123131992-32a1ba80-d489-11eb-8d80-748a73737031.PNG">
 
         - 마이크로 서비스를 넘나드는 시나리오에 대한 트랜잭션 처리
         - 고객 렌탈 신청시 결제처리:  결제가 완료되지 않은 신청은 절대 받지 않는다는 경영자의 오랜 신념(?) 에 따라, ACID 트랜잭션 적용. 신청 완료시 결제처리에 대해서는 Request-Response 방식 처리
