@@ -123,12 +123,12 @@
 
 ### 1차 완성본에 대한 기능적/비기능적 요구사항을 커버하는지 검증
 
-![image](https://user-images.githubusercontent.com/487999/79684167-3ecd2f00-826a-11ea-806a-957362d197e3.png)
+<img width="800" alt="검증-1" src="https://user-images.githubusercontent.com/80210609/123129281-cc1b9d00-d486-11eb-94e3-f3b950874af5.PNG">)
 
-    - 고객이 메뉴를 선택하여 주문한다 (ok)
-    - 고객이 결제한다 (ok)
-    - 주문이 되면 주문 내역이 입점상점주인에게 전달된다 (ok)
-    - 상점주인이 확인하여 요리해서 배달 출발한다 (ok)
+    - 자동차 관리자는 자동차를 등록한다. (ok)
+    - 고객이 렌탈을 신청한다. (ok)
+    - 고객이 렌탈 비용을 결제한다. (ok)
+    - 신청이 되면 자동차가 렌탈되고 현황이 업데이트 된다. (ok)
 
 ![image](https://user-images.githubusercontent.com/487999/79684170-47256a00-826a-11ea-9777-e16fafff519a.png)
     - 고객이 주문을 취소할 수 있다 (ok)
