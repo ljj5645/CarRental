@@ -87,7 +87,7 @@
 <img width="700" alt="이벤트 탈락" src="https://user-images.githubusercontent.com/80210609/123116526-f2880b00-d47b-11eb-83cd-46c84783fdd3.PNG">
 
     - 과정중 도출된 잘못된 도메인 이벤트들을 걸러내는 작업을 수행함
-        - 주문시>메뉴카테고리선택됨, 주문시>메뉴검색됨 :  UI 의 이벤트이지, 업무적인 의미의 이벤트가 아니라서 제외
+        - 신청버튼 클릭, 결제버튼 클릭은 UI 의 이벤트이지, 업무적인 의미의 이벤트가 아니라서 제외
 
 ### 액터, 커맨드 부착하여 읽기 좋게
 <img width="800" alt="액터, 커맨드" src="https://user-images.githubusercontent.com/80210609/123121380-151c2300-d480-11eb-9cb1-dc2134cc22bb.PNG">
@@ -95,18 +95,17 @@
 ### 어그리게잇으로 묶기
 <img width="800" alt="어그리게잇" src="https://user-images.githubusercontent.com/80210609/123121308-07ff3400-d480-11eb-9ecb-f30c2815cd84.PNG">
 
-    - app의 Order, store 의 주문처리, 결제의 결제이력은 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
+    - 신청 관리의 렌트, 결제의 결제이력, 렌터카 관리는 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
 
 ### 바운디드 컨텍스트로 묶기
 
 <img width="800" alt="바운디드 컨텍스트" src="https://user-images.githubusercontent.com/80210609/123122009-9c699680-d480-11eb-9a9a-154bf0e98e9f.PNG">
 
     - 도메인 서열 분리 
-        - Core Domain:  app(front), store : 없어서는 안될 핵심 서비스이며, 연견 Up-time SLA 수준을 99.999% 목표, 배포주기는 app 의 경우 1주일 1회 미만, store 의 경우 1개월 1회 미만
-        - Supporting Domain:   marketing, customer : 경쟁력을 내기위한 서비스이며, SLA 수준은 연간 60% 이상 uptime 목표, 배포주기는 각 팀의 자율이나 표준 스프린트 주기가 1주일 이므로 1주일 1회 이상을 기준으로 함.
+        - Core Domain:  rent(front), management : 없어서는 안될 핵심 서비스이며, 연견 Up-time SLA 수준을 99.999% 목표, 배포주기는 rent 의 경우 1주일 1회 미만, management 의 경우 1개월 1회 미만
         - General Domain:   pay : 결제서비스로 3rd Party 외부 서비스를 사용하는 것이 경쟁력이 높음 (핑크색으로 이후 전환할 예정)
 
-### 폴리시 부착 (괄호는 수행주체, 폴리시 부착을 둘째단계에서 해놔도 상관 없음. 전체 연계가 초기에 드러남)
+### 폴리시 부착 (괄호는 수행주체)
 
 <img width="850" alt="폴리시 부착" src="https://user-images.githubusercontent.com/80210609/123123640-f28b0980-d481-11eb-90cb-2d094aeea2de.PNG">
 
