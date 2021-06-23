@@ -117,7 +117,7 @@
 
 ### 완성된 1차 모형
 
-<img width="700" alt="1차 모형" src="https://user-images.githubusercontent.com/80210609/123126630-7fcf5d80-d484-11eb-89e2-705fb2051a4b.PNG">
+<img width="900" alt="1차 모형" src="https://user-images.githubusercontent.com/80210609/123126630-7fcf5d80-d484-11eb-89e2-705fb2051a4b.PNG">
 
 
     - View Model 추가
