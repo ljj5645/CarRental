@@ -81,7 +81,7 @@
 
 
 ### 이벤트 도출
-![image](https://user-images.githubusercontent.com/487999/79683604-47bc0180-8266-11ea-9212-7e88c9bf9911.png)
+<img width="700" alt="이벤트 도출" src="https://user-images.githubusercontent.com/80210609/123114415-3ed24b80-d47a-11eb-80b5-d3ce26523343.PNG">
 
 ### 부적격 이벤트 탈락
 ![image](https://user-images.githubusercontent.com/487999/79683612-4b4f8880-8266-11ea-9519-7e084524a462.png)
