@@ -130,11 +130,9 @@
     - 고객이 렌탈 비용을 결제한다. (ok)
     - 신청이 되면 자동차가 렌탈되고 현황이 업데이트 된다. (ok)
 
-![image](https://user-images.githubusercontent.com/487999/79684170-47256a00-826a-11ea-9777-e16fafff519a.png)
-    - 고객이 주문을 취소할 수 있다 (ok)
-    - 주문이 취소되면 배달이 취소된다 (ok)
-    - 고객이 주문상태를 중간중간 조회한다 (View-green sticker 의 추가로 ok) 
-    - 주문상태가 바뀔 때 마다 카톡으로 알림을 보낸다 (?)
+<img width="800" alt="검증-2" src="https://user-images.githubusercontent.com/80210609/123129846-37fe0580-d487-11eb-8a24-a7f74c6fccf7.PNG">
+    - 고객이 신청을 취소할 수 있다. (ok)
+    - 신청이 취소되면 렌탈이 취소되고 현황이 업데이트 된다. (ok)
 
 
 ### 모델 수정
