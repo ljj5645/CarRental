@@ -156,7 +156,7 @@
 
 ## 헥사고날 아키텍처 다이어그램 도출
     
-<img width="700" alt="헥사고날" src="https://user-images.githubusercontent.com/80210609/123132791-12bec680-d48a-11eb-9d42-50873d6fb997.PNG">
+<img width="800" alt="헥사고날" src="https://user-images.githubusercontent.com/80210609/123132791-12bec680-d48a-11eb-9d42-50873d6fb997.PNG">
 
 
     - Chris Richardson, MSA Patterns 참고하여 Inbound adaptor와 Outbound adaptor를 구분함
@@ -264,11 +264,15 @@ public class Rent {
 ```
 - Entity Pattern 과 Repository Pattern 을 적용하여 JPA 를 통하여 다양한 데이터소스 유형 (RDB or NoSQL) 에 대한 별도의 처리가 없도록 데이터 접근 어댑터를 자동 생성하기 위하여 Spring Data REST 의 RestRepository 를 적용하였다
 ```
-package fooddelivery;
+package carrental;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-public interface 결제이력Repository extends PagingAndSortingRepository<결제이력, Long>{
+@RepositoryRestResource(collectionResourceRel="rents", path="rents")
+public interface RentRepository extends PagingAndSortingRepository<Rent, Long>{
+
+
 }
 ```
 - 적용 후 REST API 의 테스트
