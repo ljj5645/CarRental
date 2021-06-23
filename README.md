@@ -269,57 +269,39 @@ package carrental;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel="rents", path="rents")
-public interface RentRepository extends PagingAndSortingRepository<Rent, Long>{
+@RepositoryRestResource(collectionResourceRel="pays", path="pays")
+public interface PayRepository extends PagingAndSortingRepository<Pay, Long>{
 
-
+    Pay findByRentId(Long rentId);
 }
+
 ```
 - 적용 후 REST API 의 테스트
 ```
-# app 서비스의 주문처리
-http localhost:8081/orders item="통닭"
+# rental 서비스의 렌탈 신청
+http POST localhost:8082/rents carId=1234 status=RENT
 
-# store 서비스의 배달처리
-http localhost:8083/주문처리s orderId=1
+# management 서비스의 렌터카 등록 
+http POST localhost:8081/managements carId=1234 carName=car01 status=AVAILABLE
 
 # 주문 상태 확인
-http localhost:8081/orders/1
+http GET localhost:8082/rents
 
 ```
 
 
 ## 폴리글랏 퍼시스턴스
 
-앱프런트 (app) 는 서비스 특성상 많은 사용자의 유입과 상품 정보의 다양한 콘텐츠를 저장해야 하는 특징으로 인해 RDB 보다는 Document DB / NoSQL 계열의 데이터베이스인 Mongo DB 를 사용하기로 하였다. 이를 위해 order 의 선언에는 @Entity 가 아닌 @Document 로 마킹되었으며, 별다른 작업없이 기존의 Entity Pattern 과 Repository Pattern 적용과 데이터베이스 제품의 설정 (application.yml) 만으로 MongoDB 에 부착시켰다
+rental는  데이터베이스는 HSQL로 구현하여 MSA의 서비스간 서로 다른 종류의 DB에도 문제없이 동작하여 다형성을 만족하는지 확인하였다.
 
 ```
-# Order.java
+> rental의 application.yml
 
-package fooddelivery;
-
-@Document
-public class Order {
-
-    private String id; // mongo db 적용시엔 id 는 고정값으로 key가 자동 발급되는 필드기 때문에 @Id 나 @GeneratedValue 를 주지 않아도 된다.
-    private String item;
-    private Integer 수량;
-
-}
-
-
-# 주문Repository.java
-package fooddelivery;
-
-public interface 주문Repository extends JpaRepository<Order, UUID>{
-}
-
-# application.yml
-
-  data:
-    mongodb:
-      host: mongodb.default.svc.cluster.local
-    database: mongo-example
+  <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+        <scope>runtime</scope>
+    </dependency>
 
 ```
 
