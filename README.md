@@ -294,15 +294,14 @@ http GET localhost:8082/rents
 
 rental는  데이터베이스는 HSQL로 구현하여 MSA의 서비스간 서로 다른 종류의 DB에도 문제없이 동작하여 다형성을 만족하는지 확인하였다.
 
-```
 > rental의 application.yml
 
+```xml
   <dependency>
         <groupId>org.hsqldb</groupId>
         <artifactId>hsqldb</artifactId>
         <scope>runtime</scope>
     </dependency>
-
 ```
 
 ## 폴리글랏 프로그래밍
