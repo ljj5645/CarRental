@@ -90,10 +90,10 @@
         - 주문시>메뉴카테고리선택됨, 주문시>메뉴검색됨 :  UI 의 이벤트이지, 업무적인 의미의 이벤트가 아니라서 제외
 
 ### 액터, 커맨드 부착하여 읽기 좋게
-<img width="800" alt="액터, 커맨드" src="https://user-images.githubusercontent.com/80210609/123119825-d0dc5300-d47e-11eb-83c3-46e946c33394.PNG">
+<img width="800" alt="액터, 커맨드" src="https://user-images.githubusercontent.com/80210609/123121380-151c2300-d480-11eb-9cb1-dc2134cc22bb.PNG">
 
 ### 어그리게잇으로 묶기
-![image](https://user-images.githubusercontent.com/487999/79683618-52769680-8266-11ea-9c21-48d6812444ba.png)
+<img width="800" alt="어그리게잇" src="https://user-images.githubusercontent.com/80210609/123121308-07ff3400-d480-11eb-9ecb-f30c2815cd84.PNG">
 
     - app의 Order, store 의 주문처리, 결제의 결제이력은 그와 연결된 command 와 event 들에 의하여 트랜잭션이 유지되어야 하는 단위로 그들 끼리 묶어줌
 
