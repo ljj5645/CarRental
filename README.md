@@ -133,6 +133,11 @@
 <img width="800" alt="검증-2" src="https://user-images.githubusercontent.com/80210609/123129846-37fe0580-d487-11eb-8a24-a7f74c6fccf7.PNG">
     - 고객이 신청을 취소할 수 있다. (ok)
     - 신청이 취소되면 렌탈이 취소되고 현황이 업데이트 된다. (ok)
+    
+<img width="800" alt="검증-3" src="https://user-images.githubusercontent.com/80210609/123130478-bfe40f80-d487-11eb-9839-5849585ab131.PNG">
+    - 자동차가 고장 났을 경우 수리를 신청한다. (ok)
+    - 수리가 신청/완료될 경우 현황이 업데이트 된다. (ok)
+    - 접수된 수리 내역을 확인하고 수리를 진행한다. (ok) 
 
 
 ### 모델 수정
