@@ -81,10 +81,10 @@
 
 
 ### 이벤트 도출
-<img width="700" alt="이벤트 도출" src="https://user-images.githubusercontent.com/80210609/123114415-3ed24b80-d47a-11eb-80b5-d3ce26523343.PNG">
+<img width="700" alt="이벤트 도출" src="https://user-images.githubusercontent.com/80210609/123116430-de440e00-d47b-11eb-9405-94758bf365ef.PNG">
 
 ### 부적격 이벤트 탈락
-![image](https://user-images.githubusercontent.com/487999/79683612-4b4f8880-8266-11ea-9519-7e084524a462.png)
+<img width="700" alt="이벤트 탈락" src="https://user-images.githubusercontent.com/80210609/123116526-f2880b00-d47b-11eb-83cd-46c84783fdd3.PNG">
 
     - 과정중 도출된 잘못된 도메인 이벤트들을 걸러내는 작업을 수행함
         - 주문시>메뉴카테고리선택됨, 주문시>메뉴검색됨 :  UI 의 이벤트이지, 업무적인 의미의 이벤트가 아니라서 제외
