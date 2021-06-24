@@ -606,7 +606,6 @@ kubectl get deploy rental -w
 ```
 - 어느정도 시간이 흐른 후 (약 30초) 스케일 아웃이 벌어지는 것을 확인할 수 있다:
 <img width="500" alt="hpa3" src="https://user-images.githubusercontent.com/80210609/123290497-4d893300-d54c-11eb-8ee5-870183da6841.PNG">
-<img width="600" alt="hpa3" src="https://user-images.githubusercontent.com/80210609/123290623-642f8a00-d54c-11eb-9451-31a63908a5f6.PNG">
 
 - siege 의 로그를 보아도 전체적인 성공률이 높아진 것을 확인 할 수 있다. 
 <img width="400" alt="hpa2" src="https://user-images.githubusercontent.com/80210609/123290546-57129b00-d54c-11eb-8adb-75317f601b11.PNG">
@@ -618,59 +617,63 @@ kubectl get deploy rental -w
 
 - seige 로 배포작업 직전에 워크로드를 모니터링 함.
 ```
-siege -c100 -t120S -r10 --content-type "application/json" 'http://localhost:8081/orders POST {"item": "chicken"}'
-
-** SIEGE 4.0.5
-** Preparing 100 concurrent users for battle.
-The server is now under siege...
-
-HTTP/1.1 201     0.68 secs:     207 bytes ==> POST http://localhost:8081/orders
-HTTP/1.1 201     0.68 secs:     207 bytes ==> POST http://localhost:8081/orders
-HTTP/1.1 201     0.70 secs:     207 bytes ==> POST http://localhost:8081/orders
-HTTP/1.1 201     0.70 secs:     207 bytes ==> POST http://localhost:8081/orders
-:
-
+$ siege -c100 -t60S -r10 -v --content-type "application/json" 'http://gateway:8080/rents POST {"carId":1234, "status":"RENT"}'
 ```
+
 
 - 새버전으로의 배포 시작
 ```
-kubectl set image ...
+kubectl apply -f kubectl apply -f deployment_readiness.yml
 ```
 
 - seige 의 화면으로 넘어가서 Availability 가 100% 미만으로 떨어졌는지 확인
-```
-Transactions:		        3078 hits
-Availability:		       70.45 %
-Elapsed time:		       120 secs
-Data transferred:	        0.34 MB
-Response time:		        5.60 secs
-Transaction rate:	       17.15 trans/sec
-Throughput:		        0.01 MB/sec
-Concurrency:		       96.02
+<img width="500" alt="리드니스3" src="https://user-images.githubusercontent.com/80210609/123293050-9c37cc80-d54e-11eb-84c2-6bf63ad8cc48.PNG">
 
-```
-배포기간중 Availability 가 평소 100%에서 70% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe 를 설정함:
+배포기간중 Availability 가 평소 100%에서 30% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe 를 설정함:
 
-```
-# deployment.yaml 의 readiness probe 의 설정:
-
-
+``` 
 kubectl apply -f kubernetes/deployment.yaml
 ```
 
+```
+# deployment.yaml
+
+readinessProbe:
+  httpGet:
+    path: '/actuator/health'
+    port: 8080
+  initialDelaySeconds: 10
+  timeoutSeconds: 2
+  periodSeconds: 5
+  failureThreshold: 10
+```
+
+- 기존 버전에서 새 버전의 rental pod 전환 중
+<img width="500" alt="리디니스" src="https://user-images.githubusercontent.com/80210609/123293823-444d9580-d54f-11eb-8706-320dcc0c9f65.PNG">
+
+
 - 동일한 시나리오로 재배포 한 후 Availability 확인:
-```
-Transactions:		        3078 hits
-Availability:		       100 %
-Elapsed time:		       120 secs
-Data transferred:	        0.34 MB
-Response time:		        5.60 secs
-Transaction rate:	       17.15 trans/sec
-Throughput:		        0.01 MB/sec
-Concurrency:		       96.02
+<img width="500" alt="리드니스4" src="https://user-images.githubusercontent.com/80210609/123293684-2bdd7b00-d54f-11eb-9225-f82a83e3dd8f.PNG">
 
-```
-<img width="500" alt="CM2" src="https://user-images.githubusercontent.com/80210609/123247441-de96e480-d521-11eb-9222-9462d4072c36.PNG">
 
-배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
+## Self-healing (Liveness Probe)
+
+rental 서비스에 deployment.yml 을 통해 liveness Probe 옵션 적용
+```
+# deployment.yaml
+livenessProbe:
+  httpGet:
+    path: '/actuator/health'
+    port: 8090
+  initialDelaySeconds: 120
+  timeoutSeconds: 2
+  periodSeconds: 5
+  failureThreshold: 5
+```
+
+* rental 서비스에 liveness가 적용된 것을 확인
+<img width="700" alt="라이브니스" src="https://user-images.githubusercontent.com/80210609/123294735-1583ef00-d550-11eb-8dd0-6f695e4a804e.PNG">
+
+* Liveness test를 위해 port : 8090으로 변경한 결과, 응답 불가로 인한 재시작 확인
+<img width="700" alt="라이브니스2" src="https://user-images.githubusercontent.com/80210609/123294983-482de780-d550-11eb-9c6b-05ac2c8ff70e.PNG">
 
