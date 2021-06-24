@@ -677,3 +677,49 @@ livenessProbe:
 * Liveness test를 위해 port : 8090으로 변경한 결과, 응답 불가로 인한 재시작 확인
 <img width="600" alt="라이브니스2" src="https://user-images.githubusercontent.com/80210609/123294983-482de780-d550-11eb-9c6b-05ac2c8ff70e.PNG">
 
+
+
+## ConfigMap
+ConfigMap 사용을 위해 rental 서비스의 apllication.yml 설정
+
+```
+# application.yml
+
+api:
+  url:
+    pay: ${configurl}
+```
+
+* deployment.yml 설정으로 서비스 내 환경 변수명과 사용할 configMap의 이름과 key값을 설정한다.
+```
+# deployment.yml
+
+env:
+  - name: configurl
+  valueFrom:
+    configMapKeyRef:
+      name: payapiurl
+      key: url
+```
+
+* configMap을 생성한다.
+
+```
+kubectl create configmap payapiurl --from-literal=url=http://gateway:8080
+```
+<img width="500" alt="CM4" src="https://user-images.githubusercontent.com/80210609/123296868-fc7c3d80-d551-11eb-8ed9-27f29f7aacab.PNG">
+
+
+* configurl 환경 변수를 확인한다.
+
+<img width="400" alt="CM5" src="https://user-images.githubusercontent.com/80210609/123297020-20d81a00-d552-11eb-957a-ec215d0ba975.PNG">
+
+
+
+
+
+
+
+
+
+
