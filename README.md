@@ -285,7 +285,7 @@ http POST localhost:8082/rents carId=1234 status=RENT
 http POST localhost:8081/managements carId=1234 carName=car01 status=AVAILABLE
 
 # 주문 상태 확인
-http GET localhost:8082/rents
+http GET localhost:8081/managements
 ```
 <img width="500" alt="restapi테스트" src="https://user-images.githubusercontent.com/80210609/123187091-6fdf6a00-d4d4-11eb-9f02-98cb2de86073.PNG">
 
@@ -372,6 +372,7 @@ mvn spring-boot:run
 http POST localhost:8082/rents carId=1234 status=RENT   #Success
 http POST localhost:8082/rents carId=2345 status=RENT   #Success
 ```
+<img width="315" alt="동기식에러확인" src="https://user-images.githubusercontent.com/80210609/123187415-175c9c80-d4d5-11eb-82ff-d98a0adbe4a5.PNG">
 
 - 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리는 운영단계에서 설명한다.)
 
@@ -456,6 +457,7 @@ mvn spring-boot:run
 #렌터카 할당 상태 확인
 http localhost:8081/managements      # 렌터카의 상태가 "RENTED"으로 확인
 ```
+<img width="500" alt="restapi테스트" src="https://user-images.githubusercontent.com/80210609/123187091-6fdf6a00-d4d4-11eb-9f02-98cb2de86073.PNG">
 
 
 # 운영
@@ -463,7 +465,7 @@ http localhost:8081/managements      # 렌터카의 상태가 "RENTED"으로 확
 ## CI/CD 설정
 
 
-각 구현체들은 각자의 source repository 에 구성되었고, 사용한 CI/CD 플랫폼은 GCP를 사용하였으며, pipeline build script 는 각 프로젝트 폴더 이하에 cloudbuild.yml 에 포함되었다.
+각 구현체들은 각자의 source repository 에 구성되었고, 도커라이징, deploy 및 서비스 생성을 진행하였다.
 
 
 ## 동기식 호출 / 서킷 브레이킹 / 장애격리
