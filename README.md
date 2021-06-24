@@ -707,12 +707,12 @@ env:
 ```
 kubectl create configmap payapiurl --from-literal=url=http://gateway:8080
 ```
-<img width="500" alt="CM4" src="https://user-images.githubusercontent.com/80210609/123296868-fc7c3d80-d551-11eb-8ed9-27f29f7aacab.PNG">
+<img width="600" alt="CM4" src="https://user-images.githubusercontent.com/80210609/123296868-fc7c3d80-d551-11eb-8ed9-27f29f7aacab.PNG">
 
 
 * configurl 환경 변수를 확인한다.
 
-<img width="300" alt="CM5" src="https://user-images.githubusercontent.com/80210609/123297020-20d81a00-d552-11eb-957a-ec215d0ba975.PNG">
+<img width="400" alt="CM5" src="https://user-images.githubusercontent.com/80210609/123297020-20d81a00-d552-11eb-957a-ec215d0ba975.PNG">
 
 
 * rental 서비스의 PayService.java에 환경 변수를 적용하여 설정한 Pay 서비스의 url로 서비스 동작 여부를 확인한다.
