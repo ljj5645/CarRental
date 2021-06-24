@@ -460,6 +460,10 @@ http localhost:8081/managements      # 렌터카의 상태가 "RENTED"으로 확
 <img width="500" alt="restapi테스트" src="https://user-images.githubusercontent.com/80210609/123187091-6fdf6a00-d4d4-11eb-9f02-98cb2de86073.PNG">
 
 
+## CQRS
+Materialized View 구현을 통해 다른 마이크로서비스의 데이터 원본에 접근없이 내 서비스의 화면 구성과 잦은 조회가 가능하게 하였습니다. 본 과제에서 View 서비스는 CustomerCenter 서비스가 수행하며 렌탈 신청 상태를 보여준다.
+
+
 # 운영
 
 ## CI/CD 설정
