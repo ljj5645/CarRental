@@ -62,3 +62,4 @@ spring:
         event-out:
           destination: carrental
           contentType: application/json
+
