@@ -574,7 +574,7 @@ $ siege -c100 -t60S -r10 -v --content-type "application/json" 'http://gateway:80
 
 - 운영시스템은 죽지 않고 지속적으로 CB 에 의하여 적절히 회로가 열림과 닫힘이 벌어지면서 자원을 보호하고 있음을 보여준다. 하지만, 7.30% 가 성공하였고, 92.70%가 실패했다는 것은 고객 사용성에 있어 좋지 않기 때문에 동적 Scale out (replica의 자동적 추가,HPA) 을 통하여 시스템을 확장 해주는 후속처리가 필요하다.
 
-<img width="500" alt="서킷" src="https://user-images.githubusercontent.com/80210609/123289017-08b0cc80-d54b-11eb-84b9-e490952df896.PNG">
+<img width="400" alt="서킷" src="https://user-images.githubusercontent.com/80210609/123289017-08b0cc80-d54b-11eb-84b9-e490952df896.PNG">
 
 
 ### 오토스케일 아웃
@@ -627,7 +627,7 @@ kubectl apply -f kubectl apply -f deployment_readiness.yml
 ```
 
 - seige 의 화면으로 넘어가서 Availability 가 100% 미만으로 떨어졌는지 확인
-<img width="500" alt="리드니스3" src="https://user-images.githubusercontent.com/80210609/123293050-9c37cc80-d54e-11eb-84c2-6bf63ad8cc48.PNG">
+<img width="400" alt="리드니스3" src="https://user-images.githubusercontent.com/80210609/123293050-9c37cc80-d54e-11eb-84c2-6bf63ad8cc48.PNG">
 
 배포기간중 Availability 가 평소 100%에서 30% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe 를 설정함:
 
@@ -653,7 +653,7 @@ readinessProbe:
 
 
 - 동일한 시나리오로 재배포 한 후 Availability 확인:
-<img width="500" alt="리드니스4" src="https://user-images.githubusercontent.com/80210609/123293684-2bdd7b00-d54f-11eb-9225-f82a83e3dd8f.PNG">
+<img width="400" alt="리드니스4" src="https://user-images.githubusercontent.com/80210609/123293684-2bdd7b00-d54f-11eb-9225-f82a83e3dd8f.PNG">
 
 
 ## Self-healing (Liveness Probe)
@@ -675,5 +675,5 @@ livenessProbe:
 <img width="700" alt="라이브니스" src="https://user-images.githubusercontent.com/80210609/123294735-1583ef00-d550-11eb-8dd0-6f695e4a804e.PNG">
 
 * Liveness test를 위해 port : 8090으로 변경한 결과, 응답 불가로 인한 재시작 확인
-<img width="700" alt="라이브니스2" src="https://user-images.githubusercontent.com/80210609/123294983-482de780-d550-11eb-9c6b-05ac2c8ff70e.PNG">
+<img width="600" alt="라이브니스2" src="https://user-images.githubusercontent.com/80210609/123294983-482de780-d550-11eb-9c6b-05ac2c8ff70e.PNG">
 
