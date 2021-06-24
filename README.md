@@ -468,6 +468,48 @@ Materialized View 구현을 통해 다른 마이크로서비스의 데이터 원
 <img width="500" alt="CQRS" src="https://user-images.githubusercontent.com/80210609/123208570-5224fb80-d4fa-11eb-9b01-4c7e2b963e49.PNG">
 
 
+## Gateway 적용
+API Gateway를 통하여 마이크로서비스들의 진입점을 단일화하였습니다.
+
+> gateway > application.xml 설정
+```
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: management
+          uri: http://management:8080
+          predicates:
+            - Path=/managements/** 
+        - id: rental
+          uri: http://rental:8080
+          predicates:
+            - Path=/rents/** 
+        - id: pay
+          uri: http://pay:8080
+          predicates:
+            - Path=/pays/** 
+        - id: customerCenter
+          uri: http://customerCenter:8080
+          predicates:
+            - Path= /customerCenters/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
+```
+
+
 # 운영
 
 ## CI/CD 설정
