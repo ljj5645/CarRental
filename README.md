@@ -535,6 +535,7 @@ az acr build --registry skccuser19 --image skccuser19.azurecr.io/management:late
 - 컨테이너라이징 : 디플로이 생성 확인
 ```
 kubectl create deploy management --image=skccuser19.azurecr.io/management:latest
+kubectl create -f ./kubernetes/deployment.yml
 ```
 - 컨테이너라이징 : 서비스 생성
 ```
