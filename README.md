@@ -295,7 +295,7 @@ http GET localhost:8081/managements
 
 rental는  데이터베이스는 HSQL로 구현하여 MSA의 서비스간 서로 다른 종류의 DB에도 문제없이 동작하여 다형성을 만족하는지 확인하였다.
 
-> rental의 application.yml
+> rental의 pom.xml
 
 ```xml
   <dependency>
