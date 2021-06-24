@@ -712,7 +712,28 @@ kubectl create configmap payapiurl --from-literal=url=http://gateway:8080
 
 * configurl 환경 변수를 확인한다.
 
-<img width="400" alt="CM5" src="https://user-images.githubusercontent.com/80210609/123297020-20d81a00-d552-11eb-957a-ec215d0ba975.PNG">
+<img width="300" alt="CM5" src="https://user-images.githubusercontent.com/80210609/123297020-20d81a00-d552-11eb-957a-ec215d0ba975.PNG">
+
+
+* rental 서비스의 PayService.java에 환경 변수를 적용하여 설정한 Pay 서비스의 url로 서비스 동작 여부를 확인한다.
+```
+# PayService.java
+
+@FeignClient(name="pay", url="${api.url.pay}", fallback = PayServiceFallback.class)
+public interface PayService {
+
+    @RequestMapping(method= RequestMethod.POST, path="/pays")
+    public boolean pay(@RequestBody Pay pay);
+
+}
+```
+<img width="500" alt="CM6" src="https://user-images.githubusercontent.com/80210609/123297560-a1971600-d552-11eb-92b6-c343fb5f2488.PNG">
+
+정상적으로 rental 서비스가 작동하는 것을 확인할 수 있다.
+
+
+
+
 
 
 
