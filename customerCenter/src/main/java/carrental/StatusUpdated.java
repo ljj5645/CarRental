@@ -1,11 +1,12 @@
 package carrental;
 
-public class Paid extends AbstractEvent {
+public class StatusUpdated extends AbstractEvent {
 
     private Long id;
-    private Long rentId;
     private Long carId;
+    private String carName;
     private String status;
+    private Long rentId;
 
     public Long getId() {
         return id;
@@ -27,6 +28,13 @@ public class Paid extends AbstractEvent {
 
     public void setRentId(Long rentId) {
         this.rentId = rentId;
+    }
+    public String getCarName() {
+        return carName;
+    }
+
+    public void setCarName(String carName) {
+        this.carName = carName;
     }
     public String getStatus() {
         return status;

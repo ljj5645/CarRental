@@ -12,3 +12,4 @@ carrental\CustomerCenterRepository.class
 carrental\Paid.class
 carrental\CustomerCenterApplication.class
 carrental\CustomerCenterViewHandler.class
+carrental\StatusUpdated.class

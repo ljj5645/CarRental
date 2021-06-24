@@ -11,3 +11,4 @@ carrental\AbstractEvent$1.class
 carrental\AbstractEvent.class
 carrental\Paid.class
 carrental\ManagementRepository.class
+carrental\StatusUpdated.class

@@ -17,11 +17,9 @@ public class Rent {
 
     @PostPersist
     public void onPostPersist(){
-        //Following code causes dependency to external APIs
-        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
-
+       
         carrental.external.Pay pay = new carrental.external.Pay();
-        // mappings goes here
+     
         pay.setRentId(this.getId());
         pay.setStatus("PAID");
         pay.setCarId(this.getCarId());
@@ -70,8 +68,5 @@ public class Rent {
     public void setCarId(Long carId) {
         this.carId = carId;
     }
-
-
-
 
 }

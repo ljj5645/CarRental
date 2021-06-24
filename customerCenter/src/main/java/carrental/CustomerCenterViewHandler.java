@@ -63,7 +63,7 @@ public class CustomerCenterViewHandler {
             List<CustomerCenter> customerCenterList = customerCenterRepository.findByRentId(paid.getRentId());
             for(CustomerCenter customerCenter : customerCenterList){
                 // view 객체에 이벤트의 eventDirectValue 를 set 함
-                customerCenter.setStatus(paid.getStatus());
+                // customerCenter.setStatus(paid.getStatus());
                 customerCenter.setPayId(paid.getId());
                 // view 레파지 토리에 save
                 customerCenterRepository.save(customerCenter);
@@ -124,5 +124,24 @@ public class CustomerCenterViewHandler {
             e.printStackTrace();
         }
     }
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenRepairApplied_then_UPDATE_6(@Payload StatusUpdated updated) {
+        try {
+            if (!updated.validate()) return;
+                // view 객체 조회
+            List<CustomerCenter> customerCenterList = customerCenterRepository.findByRentId(updated.getRentId());
+            for(CustomerCenter customerCenter : customerCenterList){
+                // view 객체에 이벤트의 eventDirectValue 를 set 함
+                customerCenter.setStatus(updated.getStatus());
+                customerCenter.setCarName(updated.getCarName());
+                // view 레파지 토리에 save
+                customerCenterRepository.save(customerCenter);
+            }
+            
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
 }

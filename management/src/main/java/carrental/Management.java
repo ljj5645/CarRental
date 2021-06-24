@@ -34,6 +34,12 @@ public class Management {
             BeanUtils.copyProperties(this, repaired);
             repaired.publishAfterCommit();
         }
+
+        else if(this.getStatus().equals("RENTED")){
+            StatusUpdated updated = new StatusUpdated();
+            BeanUtils.copyProperties(this, updated);
+            updated.publishAfterCommit();
+        }
     }
 
 
