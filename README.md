@@ -815,6 +815,7 @@ Throughput:		        0.01 MB/sec
 Concurrency:		       96.02
 
 ```
+<img width="500" alt="CM2" src="https://user-images.githubusercontent.com/80210609/123247441-de96e480-d521-11eb-9222-9462d4072c36.PNG">
 
 배포기간 동안 Availability 가 변화없기 때문에 무정지 재배포가 성공한 것으로 확인됨.
 
