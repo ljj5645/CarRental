@@ -25,10 +25,15 @@ public class Rent {
         pay.setCarId(this.getCarId());
         RentalApplication.applicationContext.getBean(carrental.external.PayService.class)
             .pay(pay);
-
-        Rented rented = new Rented();
-        BeanUtils.copyProperties(this, rented);
-        rented.publishAfterCommit();
+        
+        if (RentalApplication.applicationContext.getBean(carrental.external.PayService.class).pay(pay)) {
+            Rented rented = new Rented();
+            BeanUtils.copyProperties(this, rented);
+            rented.publishAfterCommit();
+        }else {
+            throw new RollbackException("Failed during pay");
+        }
+        
     }
 
     @PostUpdate
