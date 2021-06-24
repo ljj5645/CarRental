@@ -735,7 +735,7 @@ public interface PayService {
 
 }
 ```
-<img width="500" alt="CM6" src="https://user-images.githubusercontent.com/80210609/123297560-a1971600-d552-11eb-92b6-c343fb5f2488.PNG">
+<img width="700" alt="CM6" src="https://user-images.githubusercontent.com/80210609/123297560-a1971600-d552-11eb-92b6-c343fb5f2488.PNG">
 
 정상적으로 rental 서비스가 작동하는 것을 확인할 수 있다.
 
