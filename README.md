@@ -442,7 +442,8 @@ public class PolicyHandler{
 }
 
 ```
-렌터카 관리 서비스는 렌탈 신청 관리/결제와 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 렌터카 관리 서비스이 유지보수로 인해 잠시 내려간 상태라도 신청을 받는데 문제가 없다:
+렌터카 관리 서비스는 렌탈 신청 관리/결제와 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 렌터카 관리 서비스이 유지보수로 인해 잠시 내려간 상태라도 신청을 받는데 문제가 없다. 
+MSAez 모델링 도구를 활용하여 각 서비스의 이벤트와 폴리시간의 연결을 pub/sub 점선으로 표현하였으며, 이를 코드 자동생성하여 Correlation-key 연결을 활용하였다.
 ```
 # 렌터카 관리 서비스 (management) 를 잠시 내려놓음 (ctrl+c)
 
@@ -462,6 +463,7 @@ http localhost:8081/managements      # 렌터카의 상태가 "RENTED"으로 확
 
 ## CQRS
 Materialized View 구현을 통해 다른 마이크로서비스의 데이터 원본에 접근없이 내 서비스의 화면 구성과 잦은 조회가 가능하게 하였습니다. 본 과제에서 View 서비스는 CustomerCenter 서비스가 수행하며 렌탈 신청 상태를 보여준다.
+<img width="600" alt="CQRS" src="https://user-images.githubusercontent.com/80210609/123208570-5224fb80-d4fa-11eb-9b01-4c7e2b963e49.PNG">
 
 
 # 운영
