@@ -324,11 +324,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
 
-@FeignClient(name="pay", url="http://localhost:8083")
+@FeignClient(name="pay", url="http://localhost:8083", fallback = PayServiceFallback.class)
 public interface PayService {
 
     @RequestMapping(method= RequestMethod.POST, path="/pays")
-    public void pay(@RequestBody Pay pay);
+    public boolean pay(@RequestBody Pay pay);
 
 }
 ```
@@ -337,7 +337,7 @@ public interface PayService {
 ```
 # Rent.java (Entity)
 
-   @PostPersist
+@PostPersist
     public void onPostPersist(){
        
         carrental.external.Pay pay = new carrental.external.Pay();
@@ -345,12 +345,15 @@ public interface PayService {
         pay.setRentId(this.getId());
         pay.setStatus("PAID");
         pay.setCarId(this.getCarId());
-        RentalApplication.applicationContext.getBean(carrental.external.PayService.class)
-            .pay(pay);
-
-        Rented rented = new Rented();
-        BeanUtils.copyProperties(this, rented);
-        rented.publishAfterCommit();
+        
+        if (RentalApplication.applicationContext.getBean(carrental.external.PayService.class).pay(pay)) {
+            Rented rented = new Rented();
+            BeanUtils.copyProperties(this, rented);
+            rented.publishAfterCommit();
+        }else {
+            throw new RollbackException("Failed pay");
+        }
+        
     }
 ```
 
