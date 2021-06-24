@@ -372,7 +372,7 @@ mvn spring-boot:run
 http POST localhost:8082/rents carId=1234 status=RENT   #Success
 http POST localhost:8082/rents carId=2345 status=RENT   #Success
 ```
-<img width="315" alt="동기식에러확인" src="https://user-images.githubusercontent.com/80210609/123187415-175c9c80-d4d5-11eb-82ff-d98a0adbe4a5.PNG">
+<img width="500" alt="동기식에러확인" src="https://user-images.githubusercontent.com/80210609/123187415-175c9c80-d4d5-11eb-82ff-d98a0adbe4a5.PNG">
 
 - 또한 과도한 요청시에 서비스 장애가 도미노 처럼 벌어질 수 있다. (서킷브레이커, 폴백 처리는 운영단계에서 설명한다.)
 
@@ -463,7 +463,9 @@ http localhost:8081/managements      # 렌터카의 상태가 "RENTED"으로 확
 
 ## CQRS
 Materialized View 구현을 통해 다른 마이크로서비스의 데이터 원본에 접근없이 내 서비스의 화면 구성과 잦은 조회가 가능하게 하였습니다. 본 과제에서 View 서비스는 CustomerCenter 서비스가 수행하며 렌탈 신청 상태를 보여준다.
-<img width="600" alt="CQRS" src="https://user-images.githubusercontent.com/80210609/123208570-5224fb80-d4fa-11eb-9b01-4c7e2b963e49.PNG">
+
+> 신청 완료 후 customercenter 결과
+<img width="500" alt="CQRS" src="https://user-images.githubusercontent.com/80210609/123208570-5224fb80-d4fa-11eb-9b01-4c7e2b963e49.PNG">
 
 
 # 운영
