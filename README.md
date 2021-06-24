@@ -286,8 +286,9 @@ http POST localhost:8081/managements carId=1234 carName=car01 status=AVAILABLE
 
 # 주문 상태 확인
 http GET localhost:8082/rents
-
 ```
+<img width="500" alt="restapi테스트" src="https://user-images.githubusercontent.com/80210609/123187091-6fdf6a00-d4d4-11eb-9f02-98cb2de86073.PNG">
+
 
 
 ## 폴리글랏 퍼시스턴스
@@ -440,7 +441,7 @@ public class PolicyHandler{
 }
 
 ```
-상점 시스템은 주문/결제와 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 상점시스템이 유지보수로 인해 잠시 내려간 상태라도 주문을 받는데 문제가 없다:
+렌터카 관리 서비스는 렌탈 신청 관리/결제와 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 렌터카 관리 서비스이 유지보수로 인해 잠시 내려간 상태라도 신청을 받는데 문제가 없다:
 ```
 # 렌터카 관리 서비스 (management) 를 잠시 내려놓음 (ctrl+c)
 
