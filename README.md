@@ -443,7 +443,7 @@ public class PolicyHandler{
 
 ```
 렌터카 관리 서비스는 렌탈 신청 관리/결제와 완전히 분리되어있으며, 이벤트 수신에 따라 처리되기 때문에, 렌터카 관리 서비스이 유지보수로 인해 잠시 내려간 상태라도 신청을 받는데 문제가 없다. 
-MSAez 모델링 도구를 활용하여 각 서비스의 이벤트와 폴리시간의 연결을 pub/sub 점선으로 표현하였으며, 이를 코드 자동생성하여 Correlation-key 연결을 활용하였다.
+
 ```
 # 렌터카 관리 서비스 (management) 를 잠시 내려놓음 (ctrl+c)
 
@@ -516,6 +516,30 @@ server:
 
 
 각 구현체들은 각자의 source repository 에 구성되었고, 도커라이징, deploy 및 서비스 생성을 진행하였다.
+
+- git에서 소스 가져오기
+```
+git clone https://github.com/ljj5645/CarRental.git
+```
+- Build 하기
+```
+cd hifive
+cd management
+mvn package
+```
+- 도커라이징 : Azure 레지스트리에 도커 이미지 푸시하기
+```
+az acr build --registry skccuser19 --image skccuser19.azurecr.io/management:latest .
+```
+- 컨테이너라이징 : 디플로이 생성 확인
+```
+kubectl create deploy management --image=skccuser19.azurecr.io/management:latest
+```
+- 컨테이너라이징 : 서비스 생성
+```
+kubectl expose deploy management --port=8080
+```
+> rental, pay, customercenter, gateway 서비스도 동일한 배포 작업 반복
 
 
 ## 동기식 호출 / 서킷 브레이킹 / 장애격리
