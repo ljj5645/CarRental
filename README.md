@@ -633,7 +633,7 @@ kubectl apply -f kubectl apply -f deployment_readiness.yml
 - seige 의 화면으로 넘어가서 Availability 가 100% 미만으로 떨어졌는지 확인
 <img width="400" alt="리드니스3" src="https://user-images.githubusercontent.com/80210609/123293050-9c37cc80-d54e-11eb-84c2-6bf63ad8cc48.PNG">
 
-배포기간중 Availability 가 평소 100%에서 30% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe 를 설정함:
+배포기간중 Availability 가 30% 대로 떨어지는 것을 확인. 원인은 쿠버네티스가 성급하게 새로 올려진 서비스를 READY 상태로 인식하여 서비스 유입을 진행한 것이기 때문. 이를 막기위해 Readiness Probe 를 설정함:
 
 ``` 
 kubectl apply -f kubernetes/deployment.yaml
