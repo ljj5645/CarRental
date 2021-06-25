@@ -584,7 +584,7 @@ $ siege -c100 -t60S -r10 -v --content-type "application/json" 'http://gateway:80
 ### 오토스케일 아웃
 앞서 CB 는 시스템을 안정되게 운영할 수 있게 해줬지만 사용자의 요청을 100% 받아들여주지 못했기 때문에 이에 대한 보완책으로 자동화된 확장 기능을 적용하고자 한다. 
 
-- conference의 deployment.yaml 파일 설정
+- rental의 deployment.yaml 파일 설정
 ```
 resources:
   limits:
