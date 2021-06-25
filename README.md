@@ -284,7 +284,7 @@ http POST localhost:8081/managements carId=1234 carName=car01 status=AVAILABLE
 # rental 서비스의 렌탈 신청
 http POST localhost:8082/rents carId=1234 status=RENT
 
-# 주문 상태 확인
+# 렌터카 상태 확인
 http GET localhost:8081/managements
 ```
 <img width="500" alt="restapi테스트" src="https://user-images.githubusercontent.com/80210609/123187091-6fdf6a00-d4d4-11eb-9f02-98cb2de86073.PNG">
