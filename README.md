@@ -593,7 +593,7 @@ resources:
     cpu: 200m 
 ```
 
-- 결제 서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
+- 렌탈 서비스에 대한 replica 를 동적으로 늘려주도록 HPA 를 설정한다. 설정은 CPU 사용량이 15프로를 넘어서면 replica 를 10개까지 늘려준다:
 
 ```
 kubectl autoscale deploy pay --min=1 --max=10 --cpu-percent=15
