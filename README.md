@@ -278,11 +278,11 @@ public interface PayRepository extends PagingAndSortingRepository<Pay, Long>{
 ```
 - 적용 후 REST API 의 테스트
 ```
-# rental 서비스의 렌탈 신청
-http POST localhost:8082/rents carId=1234 status=RENT
-
 # management 서비스의 렌터카 등록 
 http POST localhost:8081/managements carId=1234 carName=car01 status=AVAILABLE
+
+# rental 서비스의 렌탈 신청
+http POST localhost:8082/rents carId=1234 status=RENT
 
 # 주문 상태 확인
 http GET localhost:8081/managements
